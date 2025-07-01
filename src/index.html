@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Binário Fighter</title>
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body>
+        <header>
+        <h1>🎮 Binário Fighter - Simulação</h1>
+        <nav>
+            <a href="sobre.html" class="btn">Sobre o Projeto</a>
+        </nav>
+        </header>
+
+        <main>
+        <div id="menu">
+            <p>Deseja testar sua sorte?</p>
+            <button onclick="entrar()">1 - Entrar</button>
+            <button onclick="fugir()">2 - Fugir</button>
+        </div>
+
+        <div id="escolhaLutador" class="hidden">
+            <p>Escolha seu lutador:</p>
+            <button onclick="escolherLutador('heroi')">1 - Herói</button>
+            <button onclick="escolherLutador('vilao')">2 - Vilão</button>
+        </div>
+
+        <div id="barrasDeVida" class="hp-container hidden">
+            <div class="barra-col">
+                <span>Herói HP</span>
+                <div class="hp-bar"><div class="hp" id="hpHeroi"></div></div>
+            </div>
+
+            <div class="gif-col">
+                <img id="gifLuta" class="gif-batalha" style="display:none;" alt="Combate animado">
+            </div>
+
+            <div class="barra-col direita">
+                <span>Vilão HP</span>
+                <div class="hp-bar"><div class="hp" id="hpVilao"></div></div>
+            </div>
+        </div>
+
+        <!-- MOVA os logs para fora da .hp-container -->
+        <div class="log-container hidden">
+        <div id="logHeroi"></div>
+        <div id="logVilao"></div>
+        </div>
+
+
+        <div id="tentarNovamente" class="hidden">
+            <p>Deseja tentar novamente?</p>
+            <button onclick="resetar()">Sim</button>
+            <button onclick="fim()">Não</button>
+        </div>
+        </main>
+
+        <script src="js/script.js"></script>
+    </body>
+</html>
