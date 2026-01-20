@@ -1,72 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Sobre - Binário Fighter</title>
-    <link rel="stylesheet" href="css/style.css" />
-    <style>
-      main {
-        max-width: 900px;
-        margin: auto;
-        padding: 20px;
-        background: #1c1124;
-        border-radius: 12px;
-        box-shadow: 0 0 10px #9e00ff55;
-      }
 
-      section {
-        margin-bottom: 40px;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sobre - Binário Fighter</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎮</text></svg>" />
+</head>
 
-      h2 {
-        color: #ff00d4;
-        margin-bottom: 10px;
-        border-left: 5px solid #9e00ff;
-        padding-left: 10px;
-      }
-
-      ul,
-      ol {
-        padding-left: 20px;
-      }
-
-      li {
-        margin-bottom: 8px;
-      }
-
-      code {
-        background: #2a1a3d;
-        padding: 2px 6px;
-        border-radius: 5px;
-        color: #ffb3ff;
-      }
-
-      img {
-        width: 100%;
-        max-width: 400px;
-        border: 2px solid #9e00ff;
-        border-radius: 8px;
-        margin: 10px;
-      }
-
-      p,
-      li {
-        line-height: 1.6;
-        color: #ccc;
-      }
-
-      a {
-        color: #00ccff;
-        text-decoration: none;
-        font-weight: bold;
-      }
-
-      a:hover {
-        text-decoration: underline;
-      }
-    </style>
-  </head>
-  <body>
+<body>
+  <div class="page-container">
     <header>
       <h1>🧾 Sobre o Projeto - Binário Fighter</h1>
       <nav>
@@ -74,90 +19,173 @@
       </nav>
     </header>
 
-    <main>
+    <main class="sobre-main">
       <section>
         <h2>🎮 Introdução</h2>
         <p>
-          <strong>Binário Fighter</strong> é um jogo experimental escrito em
-          linguagem <code>C</code>, criado para simular combates automáticos
-          entre um herói e um vilão. O objetivo é mostrar lógica de programação
-          com elementos divertidos, lutas aleatórias e HPs variáveis.
+          <strong>Binário Fighter</strong> é um jogo experimental criado com
+          <code>HTML5</code>, <code>CSS3</code> e <code>JavaScript Vanilla</code>,
+          que simula combates automáticos entre Vegeta e Goku. O objetivo é
+          demonstrar lógica de programação com elementos divertidos, lutas
+          aleatórias e dinâmica de HP em tempo real.
         </p>
       </section>
 
       <section>
-        <h2>🧠 Função <code>numeroAleatorio</code></h2>
+        <h2>🎮 Personagens</h2>
         <p>
-          Essa função é responsável por gerar os danos aleatórios dos ataques
-          durante as rodadas de combate. O ciclo continua até que o HP de um dos
-          personagens chegue a zero.
+          <strong>Vegeta</strong> é o Príncipe dos Sayajin, representado pela cor <span
+            class="vegeta-color">azul</span>.
+          <strong>Goku</strong> é o guerreiro lendário, representado pela cor <span class="goku-color">laranja</span>.
+          Ambos possuem 100 HP e podem causar dano aleatório de 0 a 20 por turno.
         </p>
-        <ul>
-          <li><code>atq1</code>: Dano do vilão</li>
-          <li><code>atq2</code>: Dano do herói</li>
-          <li><code>hp1</code>: HP do vilão</li>
-          <li><code>hp2</code>: HP do herói</li>
-        </ul>
       </section>
 
       <section>
-        <h2>⚙️ Função <code>main</code></h2>
+        <h2>⚙️ Mecânica de Combate</h2>
         <p>
-          Aqui tudo começa. O jogador pode optar por entrar na luta ou fugir, e
-          escolher entre herói ou vilão. O sistema inicializa os valores de
-          força e vida com base em dados aleatórios.
+          O combate ocorre automaticamente, turno por turno. Cada personagem
+          causa dano aleatório ao outro até que um deles chegue a 0 HP ou após
+          100 turnos máximos (evitando loops infinitos). O vencedor é anunciado
+          com uma animação GIF e uma frase característica do personagem.
         </p>
+        <div class="tech-stack">
+          <div class="tech-item">
+            <strong>💥 Dano/Turno</strong><br />
+            0 a 20 (aleatório)
+          </div>
+          <div class="tech-item">
+            <strong>❤️ HP Máximo</strong><br />
+            100
+          </div>
+          <div class="tech-item">
+            <strong>⏱️ Limite de Turnos</strong><br />
+            100
+          </div>
+          <div class="tech-item">
+            <strong>⚡ Velocidade</strong><br />
+            1 segundo/turno
+          </div>
+        </div>
       </section>
 
       <section>
         <h2>🎨 Paleta de Cores</h2>
         <p>
-          A aplicação utiliza o comando <code>system("color 47")</code> para
-          modificar as cores do console no Windows, usando a biblioteca
-          <code>conio.h</code>. No modo visual, adaptamos a identidade com tons
-          de roxo, rosa e ciano.
+          A identidade visual segue um tema moderno e dinâmico:
         </p>
+        <div class="tech-stack">
+          <div class="tech-item vegeta">
+            <span class="vegeta-color">🔵 Vegeta (Azul)</span><br />
+            #0099ff - Príncipe dos Sayajin
+          </div>
+          <div class="tech-item goku">
+            <span class="goku-color">🟠 Goku (Laranja)</span><br />
+            #ff8800 - Guerreiro Nobre
+          </div>
+          <div class="tech-item fundo">
+            <span class="fundo-color">⬛ Fundo</span><br />
+            #111 - Preto Profundo
+          </div>
+          <div class="tech-item destaque">
+            <span class="destaque-color">💎 Destaque</span><br />
+            #00ddff - Ciano
+          </div>
+        </div>
       </section>
 
       <section>
         <h2>📖 Como Jogar</h2>
         <ol>
-          <li>Execute o jogo no terminal (modo original em C)</li>
+          <li>Clique no botão <strong>"1 - Entrar"</strong> para começar</li>
           <li>
-            Escolha <strong>1</strong> para lutar ou <strong>2</strong> para
-            fugir
+            Escolha seu lutador: <strong>"1 - Vegeta"</strong> (azul) ou
+            <strong>"2 - Goku"</strong> (laranja)
           </li>
-          <li>
-            Defina seu personagem: <strong>1</strong> para herói ou
-            <strong>2</strong> para vilão
-          </li>
-          <li>Assista ao combate automático turno a turno</li>
-          <li>No fim, escolha se deseja tentar novamente</li>
+          <li>Assista ao combate automático acontecer em tempo real</li>
+          <li>Veja o GIF de vitória e a frase do vencedor</li>
+          <li>Escolha se deseja <strong>"Sim"</strong> para jogar novamente ou <strong>"Não"</strong> para sair</li>
         </ol>
       </section>
 
       <section>
-        <h2>🖼️ Galeria</h2>
-        <div style="display: flex; flex-wrap: wrap; justify-content: center">
-          <img src="./img/1.PNG" alt="Gameplay 1" />
-          <img src="./img/2.PNG" alt="Gameplay 2" />
-          <img src="./img/3.PNG" alt="Gameplay 3" />
-          <img src="./img/4.PNG" alt="Gameplay 4" />
+        <h2>🛠️ Tecnologias Utilizadas</h2>
+        <div class="tech-stack">
+          <div class="tech-item">
+            <strong>📄 HTML5</strong><br />
+            Estrutura semântica
+          </div>
+          <div class="tech-item">
+            <strong>🎨 CSS3</strong><br />
+            Flexbox & Animações
+          </div>
+          <div class="tech-item">
+            <strong>⚙️ JavaScript</strong><br />
+            Vanilla (Sem frameworks)
+          </div>
+          <div class="tech-item">
+            <strong>🎬 GIFs</strong><br />
+            Feedback Visual
+          </div>
         </div>
       </section>
 
       <section>
-        <h2>📎 Créditos</h2>
-        <p>👨‍💻 Projeto criado por <strong>Bruno Gonçalves Siqueira</strong>.</p>
+        <h2>📊 Fluxo do Jogo</h2>
+        <div class="flow-diagram">
+          🎮 Menu → 🥊 Escolher Lutador → ⚡ Combate Automático → 🏆 Resultado com Animação → 🔄 Tentar Novamente
+        </div>
+      </section>
+
+      <section class="credits-section">
+        <h2 class="credit-title">📎 Créditos</h2>
+        <p>👨‍💻 Projeto criado por <strong>Bruno Siqueira</strong></p>
         <p>
           🔗 Veja o código-fonte completo no
-          <a
-            href="https://github.com/brunogsiq/Develop_Proj_Front_BinarioFighter"
-            target="_blank"
-            >GitHub</a
-          >.
+          <a href="https://github.com/brunogsiq/Develop_Proj_Front_BinarioFighter" target="_blank"
+            rel="noopener noreferrer">GitHub</a>
+        </p>
+        <p>
+          📅 Última atualização: <strong>Janeiro de 2026</strong>
+        </p>
+        <p class="credit-note">
+          ⚖️ Desenvolvido com ❤️ para demonstrar conhecimento em Web Development
         </p>
       </section>
     </main>
-  </body>
+    <div style="height: 40px;"></div>
+    <footer>
+      <div class="footer-content">
+        <div id="mensagem">
+          <p>Obrigado por nos visitar!</p>
+        </div>
+        <nav id="iconesFooter" aria-label="Links de redes sociais">
+          <a href="https://wa.me/5548991059871" target="_blank" rel="noopener noreferrer"
+            title="Entre em contato via WhatsApp">
+            <img src="img/rs_whatsapp.png" alt="WhatsApp">
+          </a>
+          <a href="https://www.linkedin.com/in/brunogsiq" target="_blank" rel="noopener noreferrer"
+            title="Visite meu perfil no LinkedIn">
+            <img src="img/rs_linkedin.png" alt="LinkedIn">
+          </a>
+          <a href="https://github.com/brunogsiq" target="_blank" rel="noopener noreferrer"
+            title="Veja meus repositórios no GitHub">
+            <img src="img/rs_github.png" alt="GitHub">
+          </a>
+          <a href="https://medium.com/@brunogsiq" target="_blank" rel="noopener noreferrer"
+            title="Leia meus artigos no Medium">
+            <img src="img/rs_medium.webp" alt="Medium">
+          </a>
+          <a href="mailto:brunogsiq@gmail.com" title="Enviar e-mail">
+            <img src="img/rs_emaill.png" alt="Email">
+          </a>
+        </nav>
+        <div id="direitos">
+          <p>&copy; Bruno Siqueira<br>Todos os direitos reservados.</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+
 </html>

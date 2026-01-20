@@ -1,61 +1,109 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-    <head>
-        <meta charset="UTF-8" />
-        <title>Binário Fighter</title>
-        <link rel="stylesheet" href="css/style.css" />
-    </head>
-    <body>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Binário Fighter</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎮</text></svg>" />
+</head>
+
+<body>
+    <div class="page-container">
         <header>
-        <h1>🎮 Binário Fighter - Simulação</h1>
-        <nav>
-            <a href="sobre.html" class="btn">Sobre o Projeto</a>
-        </nav>
+            <h1>🎮 Binário Fighter - Simulação</h1>
+            <nav>
+                <a href="./sobre.html" class="btn">Sobre o Projeto</a>
+            </nav>
         </header>
 
         <main>
-        <div id="menu">
-            <p>Deseja testar sua sorte?</p>
-            <button onclick="entrar()">1 - Entrar</button>
-            <button onclick="fugir()">2 - Fugir</button>
-        </div>
+            <section id="menu">
+                <p>Deseja testar sua sorte?</p>
+                <button type="button" data-testid="btn-entrar" id="btn-entrar">1 - Entrar</button>
+                <button type="button" data-testid="btn-fugir" id="btn-fugir">2 - Fugir</button>
+            </section>
 
-        <div id="escolhaLutador" class="hidden">
-            <p>Escolha seu lutador:</p>
-            <button onclick="escolherLutador('heroi')">1 - Herói</button>
-            <button onclick="escolherLutador('vilao')">2 - Vilão</button>
-        </div>
+            <section id="escolhaLutador" class="hidden">
+                <p>Escolha seu lutador:</p>
+                <button type="button" data-testid="btn-vegeta" id="btn-vegeta">1 - Vegeta</button>
+                <button type="button" data-testid="btn-goku" id="btn-goku">2 - Goku</button>
+            </section>
 
-        <div id="barrasDeVida" class="hp-container hidden">
-            <div class="barra-col">
-                <span>Herói HP</span>
-                <div class="hp-bar"><div class="hp" id="hpHeroi"></div></div>
-            </div>
+            <section id="barrasDeVida" class="hp-container hidden">
+                <div class="barra-col">
+                    <span>Vegeta HP</span>
+                    <div class="hp-bar">
+                        <div class="hp" id="hpHeroi"></div>
+                    </div>
+                </div>
 
-            <div class="gif-col">
-                <img id="gifLuta" class="gif-batalha" style="display:none;" alt="Combate animado">
-            </div>
+                <div class="barra-col direita">
+                    <span>Goku HP</span>
+                    <div class="hp-bar">
+                        <div class="hp" id="hpVilao"></div>
+                    </div>
+                </div>
+            </section>
 
-            <div class="barra-col direita">
-                <span>Vilão HP</span>
-                <div class="hp-bar"><div class="hp" id="hpVilao"></div></div>
-            </div>
-        </div>
+            <section id="animacaoBatalha" class="hidden">
+                <div id="vencedorText" class="vencedor-text hidden"></div>
+                <div class="gif-col">
+                    <div class="gif-placeholder" id="gifPlaceholder">⏳ Aguardando lutadores...</div>
+                    <img id="gifLuta" class="gif-batalha" alt="" aria-label="Animação da luta em andamento">
+                </div>
+                <div id="fraseLutador" class="frase-lutador hidden"></div>
 
-        <!-- MOVA os logs para fora da .hp-container -->
-        <div class="log-container hidden">
-        <div id="logHeroi"></div>
-        <div id="logVilao"></div>
-        </div>
+                <section id="tentarNovamente" class="hidden">
+                    <p>Deseja tentar novamente?</p>
+                    <div>
+                        <button type="button" data-testid="btn-sim" id="btn-sim">Sim</button>
+                        <button type="button" data-testid="btn-nao" id="btn-nao">Não</button>
+                    </div>
+                </section>
+            </section>
 
-
-        <div id="tentarNovamente" class="hidden">
-            <p>Deseja tentar novamente?</p>
-            <button onclick="resetar()">Sim</button>
-            <button onclick="fim()">Não</button>
-        </div>
+            <!-- Logs da batalha -->
+            <section class="log-container hidden">
+                <div id="logHeroi" role="log" aria-label="Log de ações do Vegeta"></div>
+                <div id="logVilao" role="log" aria-label="Log de ações do Goku"></div>
+            </section>
         </main>
+        <div style="height: 40px;"></div>
+        <footer>
+            <div class="footer-content">
+                <div id="mensagem">
+                    <p>Obrigado por nos visitar!</p>
+                </div>
+                <nav id="iconesFooter" aria-label="Links de redes sociais">
+                    <a href="https://wa.me/5548991059871" target="_blank" rel="noopener noreferrer"
+                        title="Entre em contato via WhatsApp">
+                        <img src="img/rs_whatsapp.png" alt="WhatsApp">
+                    </a>
+                    <a href="https://www.linkedin.com/in/brunogsiq" target="_blank" rel="noopener noreferrer"
+                        title="Visite meu perfil no LinkedIn">
+                        <img src="img/rs_linkedin.png" alt="LinkedIn">
+                    </a>
+                    <a href="https://github.com/brunogsiq" target="_blank" rel="noopener noreferrer"
+                        title="Veja meus repositórios no GitHub">
+                        <img src="img/rs_github.png" alt="GitHub">
+                    </a>
+                    <a href="https://medium.com/@brunogsiq" target="_blank" rel="noopener noreferrer"
+                        title="Leia meus artigos no Medium">
+                        <img src="img/rs_medium.webp" alt="Medium">
+                    </a>
+                    <a href="mailto:brunogsiq@gmail.com" title="Enviar e-mail">
+                        <img src="img/rs_emaill.png" alt="Email">
+                    </a>
+                </nav>
+                <div id="direitos">
+                    <p>&copy; Bruno Siqueira<br>Todos os direitos reservados.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
 
-        <script src="js/script.js"></script>
-    </body>
 </html>
