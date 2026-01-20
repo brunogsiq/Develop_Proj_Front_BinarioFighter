@@ -41,7 +41,9 @@ body {
     flex-direction: column;
     min-height: 100vh;
     width: 100%;
-    max-width: 100%;
+    /* limitar largura do container principal e centralizar para alinhar main e footer */
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 header {
@@ -141,8 +143,25 @@ button:focus {
 }
 
 #escolhaLutador button {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     margin: 5px 10px;
+    /* Largura fixa para padronizar os botões independentemente do texto */
+    flex: 0 0 160px;
+    width: 160px;
+    padding: 10px 12px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+@media (max-width: 480px) {
+    /* Em telas pequenas, permitir que botões cresçam e fiquem responsivos */
+    #escolhaLutador button {
+        flex: 1 1 auto;
+        width: auto;
+        min-width: 120px;
+    }
 }
 
 /* Grid para botões lado a lado */
@@ -222,6 +241,45 @@ button:focus {
     pointer-events: none !important;
 }
 
+/* Aplicar o mesmo hover degradê azul->laranja nos botões de tentarNovamente */
+#tentarNovamente button {
+    transition: all 180ms ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 12px;
+    box-sizing: border-box;
+}
+
+#tentarNovamente button:hover {
+    background: linear-gradient(90deg, #0099ff 0%, #ff8800 100%);
+    color: #ffffff;
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 8px 24px rgba(0,153,255,0.12), 0 4px 10px rgba(255,136,0,0.08);
+}
+
+/* Hover degradê para o link 'Sobre o Projeto' no header */
+header nav a.btn {
+    transition: all 180ms ease;
+    padding: 8px 12px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #0099ff;
+    background: transparent;
+    border: 2px solid transparent;
+    text-decoration: none;
+}
+
+header nav a.btn:hover {
+    background: linear-gradient(90deg, #0099ff 0%, #ff8800 100%);
+    color: #ffffff;
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 8px 24px rgba(0,153,255,0.12), 0 4px 10px rgba(255,136,0,0.08);
+    text-decoration: none;
+}
+
 /* BARRAS DE VIDA */
 #barrasDeVida {
     display: flex;
@@ -246,8 +304,9 @@ button:focus {
     flex-direction: column;
     align-items: flex-start;
     width: 100%;
-    max-width: 350px;
-    padding: 15px;
+    /* aumentar largura máxima para tornar o cartão de HP mais amplo */
+    max-width: 520px;
+    padding: 18px;
     border-radius: 8px;
     background-color: rgba(0, 153, 255, 0.15);
 }
@@ -285,7 +344,8 @@ button:focus {
 
 .hp-bar {
     width: 100%;
-    max-width: 300px;
+    /* permitir barras maiores dentro das colunas aumentadas */
+    max-width: 480px;
     height: 25px;
     background-color: #0099ff;
     border: 2px solid #0099ff;
@@ -543,9 +603,13 @@ nav .btn:focus {
 
 main {
     flex: 1;
-    max-width: 900px;
+    /* Aumenta a largura máxima para reduzir margens laterais */
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 40px;
+    /* Espaço extra entre o conteúdo principal e o footer */
+    margin-bottom: 40px;
+    /* Padding reduzido para aumentar área útil horizontal */
+    padding: 20px;
     background: rgba(17, 17, 17, 0.8);
     border-radius: 15px;
     border: 2px solid #0099ff;
@@ -553,7 +617,7 @@ main {
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 32px;
     overflow-x: hidden;
 }
 
@@ -853,11 +917,14 @@ footer {
     flex-wrap: wrap;
     margin: 0;
     margin-top: auto;
-    padding: 40px 60px;
+    /* remover padding externo do footer e delegar ao .footer-content
+       para alinhar melhor com o conteúdo do main */
+    padding: 0;
     border-top: 3px solid #0099ff;
     background: linear-gradient(to right, rgba(0, 153, 255, 0.08), rgba(0, 153, 255, 0.05) 30%, rgba(255, 136, 0, 0.05) 70%, rgba(255, 136, 0, 0.08));
     flex-shrink: 0;
-    max-width: 900px;
+    /* permitir que footer acompanhe largura maior do main */
+    max-width: 1200px;
     margin: 0 auto;
 }
 
@@ -881,7 +948,8 @@ footer {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0;
+    /* padding interno equivalente ao padding do main para alinhar bordas */
+    padding: 20px;
     background-color: transparent;
     gap: 30px;
     border-radius: 0;
@@ -1074,4 +1142,47 @@ footer {
         border-top: none;
         padding-top: 0;
     }
+}
+
+/* MENU PRINCIPAL - padronizar botões Lutar / Fugir e centralizá-los */
+#menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+#menu button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    /* Largura fixa para padronizar os botões independentemente do texto */
+    flex: 0 0 160px;
+    width: 160px;
+    padding: 10px 12px;
+    box-sizing: border-box;
+    transition: all 180ms ease;
+}
+
+@media (max-width: 480px) {
+    #menu {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #menu button {
+        flex: 1 1 auto;
+        width: auto;
+        min-width: 140px;
+    }
+}
+
+/* Hover: degradê azul -> laranja para os botões do menu */
+#menu button:hover {
+    background: linear-gradient(90deg, #0099ff 0%, #ff8800 100%);
+    color: #ffffff;
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 8px 24px rgba(0,153,255,0.12), 0 4px 10px rgba(255,136,0,0.08);
 }

@@ -56,9 +56,9 @@ function fugir() {
     barras.classList.add("hidden");
     logs.classList.remove("hidden");
     
-    // Resetar placeholder para estado visível
+    // Esconder placeholder (vamos mostrar o GIF de fuga)
     if (placeholder) {
-        placeholder.classList.remove("hidden");
+        placeholder.classList.add("hidden");
     }
     
     if (logHeroi && logVilao) {
@@ -67,6 +67,9 @@ function fugir() {
     }
     
     botoes.classList.remove("hidden");
+
+    // Mostrar GIF de fuga/espera e manter o card de tentar novamente visível
+    mostrarGifEspera();
 }
 
 function iniciarGif() {
@@ -95,6 +98,29 @@ function iniciarGif() {
         gif.src = "./img/gife02.gif?" + new Date().getTime();
         console.log("GIF carregando de: ./img/gife02.gif");
     }, 50);
+}
+
+// Carrega o GIF de espera (fuga) e mantém ele visível até ação do usuário
+function mostrarGifEspera() {
+    const gif = document.getElementById("gifLuta");
+    const placeholder = document.getElementById("gifPlaceholder");
+
+    if (!gif) {
+        console.error("Erro: Elemento GIF não encontrado");
+        return;
+    }
+
+    // Esconder placeholder
+    if (placeholder) {
+        placeholder.classList.add("hidden");
+    }
+
+    // Mostrar o GIF de espera (não auto-pausar)
+    gif.style.display = "block";
+    gif.style.visibility = "visible";
+    gif.style.opacity = "1";
+    gif.src = "./img/gife-vegeta-goku-espera.gif?" + new Date().getTime();
+    console.log("GIF de espera carregando: ./img/gife-vegeta-goku-espera.gif");
 }
 
 function pausarGif() {
@@ -325,6 +351,9 @@ function resetar() {
     
     // Esconder botões imediatamente
     document.getElementById("tentarNovamente").classList.add("hidden");
+    // Remover mensagem de espera, se existir
+    const msgEsperando = document.getElementById('mensagemEsperando');
+    if (msgEsperando) msgEsperando.remove();
     
     if (logHeroi) logHeroi.textContent = "";
     if (logVilao) logVilao.textContent = "";
@@ -349,17 +378,49 @@ function resetar() {
     document.querySelector(".log-container").classList.add("hidden");
     atualizarHP();
     pausarGif();
+
+    // Reiniciar o fluxo automaticamente: abrir tela de escolha após pequeno delay
+    // Isso atende ao requisito de que 'tentar novamente -> sim' reinicie o fluxo.
+    setTimeout(() => {
+        try {
+            entrar();
+        } catch (e) {
+            // se entrar() falhar, apenas logamos e mantemos o menu visível
+            console.error('Não foi possível iniciar a escolha automaticamente:', e);
+        }
+    }, 150);
 }
 
 function fim() {
-    // Esconder botões imediatamente
-    document.getElementById("tentarNovamente").classList.add("hidden");
-    
+    // Garantir que o card de tentar novamente permaneça visível
+    const tentar = document.getElementById("tentarNovamente");
+    if (tentar) {
+        tentar.classList.remove("hidden");
+    }
+
+    // Adicionar mensagem de espera logo abaixo do card (uma vez)
+    let msg = document.getElementById("mensagemEsperando");
+    if (!msg) {
+        msg = document.createElement('div');
+        msg.id = 'mensagemEsperando';
+        msg.style.marginTop = '12px';
+        msg.style.textAlign = 'center';
+        msg.style.fontWeight = 'bold';
+        msg.style.color = '#00ccff';
+        msg.textContent = 'Estamos lhe esperando';
+        if (tentar && tentar.parentNode) {
+            tentar.parentNode.insertBefore(msg, tentar.nextSibling);
+        }
+    } else {
+        msg.textContent = 'Estamos lhe esperando';
+        msg.style.display = '';
+    }
+
     if (logHeroi && logVilao) {
         const mensagemFinal = "\nATÉ O PRÓXIMO BINÁRIO FIGHTER!";
         logHeroi.textContent = logHeroi.textContent + mensagemFinal;
         logVilao.textContent = logVilao.textContent + mensagemFinal;
     }
-    
+
     pausarGif();
 }
