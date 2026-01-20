@@ -94,9 +94,20 @@ function iniciarGif() {
     
     // Pequeno delay para garantir que o browser processe a mudança
     setTimeout(() => {
-        // Usar gife02.gif durante a luta
-        gif.src = "./img/gife02.gif?" + new Date().getTime();
-        console.log("GIF carregando de: ./img/gife02.gif");
+        // Ciclar entre gife02, gife03 e gife04 a cada chamada
+        try {
+            const fightGifs = ['gife02.gif', 'gife03.gif', 'gife04.gif'];
+            const current = parseInt(gif.dataset.fightIndex || '0', 10) || 0;
+            const filename = fightGifs[current % fightGifs.length];
+            gif.src = 'src/img/' + filename + '?' + new Date().getTime();
+            // avançar índice para próxima vez
+            gif.dataset.fightIndex = String((current + 1) % fightGifs.length);
+            console.log('GIF de luta carregando: src/img/' + filename);
+        } catch (e) {
+            // fallback clássico
+            gif.src = "src/img/gife02.gif?" + new Date().getTime();
+            console.log("GIF carregando de: src/img/gife02.gif (fallback)");
+        }
     }, 50);
 }
 
@@ -119,8 +130,18 @@ function mostrarGifEspera() {
     gif.style.display = "block";
     gif.style.visibility = "visible";
     gif.style.opacity = "1";
-    gif.src = "./img/gife-vegeta-goku-espera.gif?" + new Date().getTime();
-    console.log("GIF de espera carregando: ./img/gife-vegeta-goku-espera.gif");
+    // aceitar um GIF alternativo quando necessário
+    const defaultGif = 'gife-vegeta-goku-espera.gif';
+    let filename = defaultGif;
+    try {
+        // se uma propriedade temporária for setada no elemento, use-a
+        if (gif.dataset && gif.dataset.waitGif) filename = gif.dataset.waitGif;
+    } catch (e) {
+        // ignore
+    }
+
+    gif.src = 'src/img/' + filename + '?' + new Date().getTime();
+    console.log('GIF de espera carregando: src/img/' + filename);
 }
 
 function pausarGif() {
@@ -193,9 +214,9 @@ function mostrarGifVitoria(vencedor) {
     setTimeout(() => {
         // Carregar GIF baseado no vencedor
         const gifVitoria = vencedor === 'vegeta' 
-            ? "./img/gife-vegeta.gif?" 
-            : "./img/gife-goku.gif?";
-        
+            ? "src/img/gife-vegeta.gif?" 
+            : "src/img/gife-goku.gif?";
+
         gif.src = gifVitoria + new Date().getTime();
         gif.style.opacity = "1";
         console.log("GIF de vitória carregando: " + gifVitoria);
@@ -379,6 +400,17 @@ function resetar() {
     atualizarHP();
     pausarGif();
 
+    // limpar índice de ciclo de GIFs para começar do primeiro quando reiniciar (Sim)
+    try {
+        const gif = document.getElementById('gifLuta');
+        if (gif && gif.dataset) {
+            delete gif.dataset.waitIndex;
+            delete gif.dataset.waitGif;
+        }
+    } catch (e) {
+        console.error('Erro ao limpar índice de GIF em resetar():', e);
+    }
+
     // Reiniciar o fluxo automaticamente: abrir tela de escolha após pequeno delay
     // Isso atende ao requisito de que 'tentar novamente -> sim' reinicie o fluxo.
     setTimeout(() => {
@@ -422,5 +454,25 @@ function fim() {
         logVilao.textContent = logVilao.textContent + mensagemFinal;
     }
 
-    pausarGif();
+    // Manter o GIF sendo apresentado quando o usuário clicar em "Não".
+    // Se o GIF estiver oculto ou sem src, mostrar o GIF de espera.
+    try {
+        const gif = document.getElementById('gifLuta');
+        if (gif && gif.dataset) {
+            const gifs = [
+                'gife-vegeta-goku-espera.gif',
+                'gife-vegeta-goku-espera-dois.gif',
+                'gife-vegeta-goku-espera-tres.gif'
+            ];
+            const currentIndex = parseInt(gif.dataset.waitIndex || '0', 10) || 0;
+            const filename = gifs[currentIndex % gifs.length];
+            // definir o GIF atual de espera e avançar o índice para a próxima vez
+            gif.dataset.waitGif = filename;
+            gif.dataset.waitIndex = String((currentIndex + 1) % gifs.length);
+        }
+        // sempre forçar exibição do GIF de espera (trocar src se necessário)
+        mostrarGifEspera();
+    } catch (e) {
+        console.error('Erro ao garantir exibição do GIF em fim():', e);
+    }
 }
