@@ -9,23 +9,15 @@ let personagemEscolhido = "vegeta"; // Rastrear personagem escolhido
 document.addEventListener('DOMContentLoaded', function() {
     logHeroi = document.getElementById("logHeroi");
     logVilao = document.getElementById("logVilao");
-
+    
     // Validar se elementos foram encontrados
     if (!logHeroi || !logVilao) {
         console.error("Erro: Elementos de log não encontrados no DOM");
         return;
     }
-
+    
     // Inicializar HP
     atualizarHP();
-
-    // Adicionar listeners para botões
-    document.getElementById("btn-entrar")?.addEventListener("click", entrar);
-    document.getElementById("btn-fugir")?.addEventListener("click", fugir);
-    document.getElementById("btn-vegeta")?.addEventListener("click", function() { escolherLutador('vegeta'); });
-    document.getElementById("btn-goku")?.addEventListener("click", function() { escolherLutador('goku'); });
-    document.getElementById("btn-sim")?.addEventListener("click", resetar);
-    document.getElementById("btn-nao")?.addEventListener("click", fim);
 });
 
 function entrar() {

@@ -1,17 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sobre - Binário Fighter</title>
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="icon"
-    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎮</text></svg>" />
-</head>
-
-<body>
-  <div class="page-container">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sobre - Binário Fighter</title>
+    <link rel="stylesheet" href="css/sobre.css" />
+    <link rel="stylesheet" href="css/footer.css" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎮</text></svg>" />
+  </head>
+  <body>
     <header>
       <h1>🧾 Sobre o Projeto - Binário Fighter</h1>
       <nav>
@@ -19,7 +16,7 @@
       </nav>
     </header>
 
-    <main class="sobre-main">
+    <main>
       <section>
         <h2>🎮 Introdução</h2>
         <p>
@@ -34,9 +31,10 @@
       <section>
         <h2>🎮 Personagens</h2>
         <p>
-          <strong>Vegeta</strong> é o Príncipe dos Sayajin, representado pela cor <span
-            class="vegeta-color">azul</span>.
-          <strong>Goku</strong> é o guerreiro lendário, representado pela cor <span class="goku-color">laranja</span>.
+          <strong>Vegeta</strong> é o Príncipe dos Sayajin, representado pela
+          cor <span style="color: #0099ff; font-weight: bold;">azul</span>.
+          <strong>Goku</strong> é o guerreiro lendário, representado pela cor
+          <span style="color: #ff8800; font-weight: bold;">laranja</span>.
           Ambos possuem 100 HP e podem causar dano aleatório de 0 a 20 por turno.
         </p>
       </section>
@@ -49,21 +47,21 @@
           100 turnos máximos (evitando loops infinitos). O vencedor é anunciado
           com uma animação GIF e uma frase característica do personagem.
         </p>
-        <div class="tech-stack">
-          <div class="tech-item">
-            <strong>💥 Dano/Turno</strong><br />
+        <div class="mecanica-list">
+          <div class="mecanica-item">
+            <strong>💥 Dano/Turno</strong>
             0 a 20 (aleatório)
           </div>
-          <div class="tech-item">
-            <strong>❤️ HP Máximo</strong><br />
+          <div class="mecanica-item">
+            <strong>❤️ HP Máximo</strong>
             100
           </div>
-          <div class="tech-item">
-            <strong>⏱️ Limite de Turnos</strong><br />
+          <div class="mecanica-item">
+            <strong>⏱️ Limite de Turnos</strong>
             100
           </div>
-          <div class="tech-item">
-            <strong>⚡ Velocidade</strong><br />
+          <div class="mecanica-item">
+            <strong>⚡ Velocidade</strong>
             1 segundo/turno
           </div>
         </div>
@@ -74,21 +72,21 @@
         <p>
           A identidade visual segue um tema moderno e dinâmico:
         </p>
-        <div class="tech-stack">
-          <div class="tech-item vegeta">
-            <span class="vegeta-color">🔵 Vegeta (Azul)</span><br />
+        <div class="mecanica-list">
+          <div class="mecanica-item" style="border-color: #0099ff; background: rgba(0, 153, 255, 0.15);">
+            <span style="color: #0099ff; font-weight: bold;">🔵 Vegeta (Azul)</span><br/>
             #0099ff - Príncipe dos Sayajin
           </div>
-          <div class="tech-item goku">
-            <span class="goku-color">🟠 Goku (Laranja)</span><br />
+          <div class="mecanica-item" style="border-color: #ff8800; background: rgba(255, 136, 0, 0.15);">
+            <span style="color: #ff8800; font-weight: bold;">🟠 Goku (Laranja)</span><br/>
             #ff8800 - Guerreiro Nobre
           </div>
-          <div class="tech-item fundo">
-            <span class="fundo-color">⬛ Fundo</span><br />
+          <div class="mecanica-item">
+            <span style="color: #eaeaea; font-weight: bold;">⬛ Fundo</span><br/>
             #111 - Preto Profundo
           </div>
-          <div class="tech-item destaque">
-            <span class="destaque-color">💎 Destaque</span><br />
+          <div class="mecanica-item">
+            <span style="color: #00ddff; font-weight: bold;">💎 Destaque</span><br/>
             #00ddff - Ciano
           </div>
         </div>
@@ -112,19 +110,19 @@
         <h2>🛠️ Tecnologias Utilizadas</h2>
         <div class="tech-stack">
           <div class="tech-item">
-            <strong>📄 HTML5</strong><br />
+            <strong>📄 HTML5</strong><br/>
             Estrutura semântica
           </div>
           <div class="tech-item">
-            <strong>🎨 CSS3</strong><br />
+            <strong>🎨 CSS3</strong><br/>
             Flexbox & Animações
           </div>
           <div class="tech-item">
-            <strong>⚙️ JavaScript</strong><br />
+            <strong>⚙️ JavaScript</strong><br/>
             Vanilla (Sem frameworks)
           </div>
           <div class="tech-item">
-            <strong>🎬 GIFs</strong><br />
+            <strong>🎬 GIFs</strong><br/>
             Feedback Visual
           </div>
         </div>
@@ -138,54 +136,56 @@
       </section>
 
       <section class="credits-section">
-        <h2 class="credit-title">📎 Créditos</h2>
-        <p>👨‍💻 Projeto criado por <strong>Bruno Siqueira</strong></p>
+        <h2 style="justify-content: center; margin: 0 0 15px 0;">📎 Créditos</h2>
+        <p>👨‍💻 Projeto criado por <strong>Bruno Gonçalves Siqueira</strong></p>
         <p>
           🔗 Veja o código-fonte completo no
-          <a href="https://github.com/brunogsiq/Develop_Proj_Front_BinarioFighter" target="_blank"
-            rel="noopener noreferrer">GitHub</a>
+          <a
+            href="https://github.com/brunogsiq/Develop_Proj_Front_BinarioFighter"
+            target="_blank"
+            rel="noopener noreferrer"
+            >GitHub</a
+          >
         </p>
         <p>
           📅 Última atualização: <strong>Janeiro de 2026</strong>
         </p>
-        <p class="credit-note">
+        <p style="font-size: 0.9em; margin-top: 15px; padding-top: 15px; border-top: 2px solid rgba(0, 153, 255, 0.3);">
           ⚖️ Desenvolvido com ❤️ para demonstrar conhecimento em Web Development
         </p>
       </section>
     </main>
-    <div style="height: 40px;"></div>
-    <footer>
-      <div class="footer-content">
-        <div id="mensagem">
-          <p>Obrigado por nos visitar!</p>
-        </div>
-        <nav id="iconesFooter" aria-label="Links de redes sociais">
-          <a href="https://wa.me/5548991059871" target="_blank" rel="noopener noreferrer"
-            title="Entre em contato via WhatsApp">
-            <img src="img/rs_whatsapp.png" alt="WhatsApp">
-          </a>
-          <a href="https://www.linkedin.com/in/brunogsiq" target="_blank" rel="noopener noreferrer"
-            title="Visite meu perfil no LinkedIn">
-            <img src="img/rs_linkedin.png" alt="LinkedIn">
-          </a>
-          <a href="https://github.com/brunogsiq" target="_blank" rel="noopener noreferrer"
-            title="Veja meus repositórios no GitHub">
-            <img src="img/rs_github.png" alt="GitHub">
-          </a>
-          <a href="https://medium.com/@brunogsiq" target="_blank" rel="noopener noreferrer"
-            title="Leia meus artigos no Medium">
-            <img src="img/rs_medium.webp" alt="Medium">
-          </a>
-          <a href="mailto:brunogsiq@gmail.com" title="Enviar e-mail">
-            <img src="img/rs_emaill.png" alt="Email">
-          </a>
-        </nav>
-        <div id="direitos">
-          <p>&copy; Bruno Siqueira<br>Todos os direitos reservados.</p>
-        </div>
-      </div>
-    </footer>
-  </div>
-</body>
 
+    <footer>
+        <div class="footer-content">
+            <div id="mensagem">
+                <p>Obrigado por nos visitar!</p>
+            </div>
+            <nav id="iconesFooter" aria-label="Links de redes sociais">
+                <a href="https://wa.me/5548991059871" target="_blank" rel="noopener noreferrer"
+                    title="Entre em contato via WhatsApp">
+                    <img src="img/rs_whatsapp.png" alt="WhatsApp">
+                </a>
+                <a href="https://www.linkedin.com/in/brunogsiq" target="_blank" rel="noopener noreferrer"
+                    title="Visite meu perfil no LinkedIn">
+                    <img src="img/rs_linkedin.png" alt="LinkedIn">
+                </a>
+                <a href="https://github.com/brunogsiq" target="_blank" rel="noopener noreferrer"
+                    title="Veja meus repositórios no GitHub">
+                    <img src="img/rs_github.png" alt="GitHub">
+                </a>
+                <a href="https://medium.com/@brunogsiq" target="_blank" rel="noopener noreferrer"
+                    title="Leia meus artigos no Medium">
+                    <img src="img/rs_medium.webp" alt="Medium">
+                </a>
+                <a href="mailto:brunogsiq@gmail.com" title="Enviar e-mail">
+                    <img src="img/rs_emaill.png" alt="Email">
+                </a>
+            </nav>
+            <div id="direitos">
+                <p>&copy; Bruno Gonçalves Siqueira - 2026<br>Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+  </body>
 </html>

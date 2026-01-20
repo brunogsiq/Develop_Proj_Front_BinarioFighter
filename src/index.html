@@ -1,77 +1,71 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Binário Fighter</title>
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎮</text></svg>" />
-</head>
-
-<body>
-    <div class="page-container">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Binário Fighter</title>
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/footer.css" />
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎮</text></svg>" />
+    </head>
+    <body>
+        <div class="page-container">
         <header>
-            <h1>🎮 Binário Fighter - Simulação</h1>
-            <nav>
-                <a href="./sobre.html" class="btn">Sobre o Projeto</a>
-            </nav>
+        <h1>🎮 Binário Fighter - Simulação</h1>
+        <nav>
+            <a href="./sobre.html" class="btn">Sobre o Projeto</a>
+        </nav>
+        
+        <section id="menu">
+            <p>Deseja testar sua sorte?</p>
+            <button type="button" data-testid="btn-entrar" onclick="entrar()">1 - Entrar</button>
+            <button type="button" data-testid="btn-fugir" onclick="fugir()">2 - Fugir</button>
+        </section>
         </header>
 
-        <main>
-            <section id="menu">
-                <p>Deseja testar sua sorte?</p>
-                <button type="button" data-testid="btn-entrar" id="btn-entrar">1 - Entrar</button>
-                <button type="button" data-testid="btn-fugir" id="btn-fugir">2 - Fugir</button>
-            </section>
+        <main role="main">
+        <section id="escolhaLutador" class="hidden">
+            <p>Escolha seu lutador:</p>
+            <button type="button" data-testid="btn-vegeta" onclick="escolherLutador('vegeta')">1 - Vegeta</button>
+            <button type="button" data-testid="btn-goku" onclick="escolherLutador('goku')">2 - Goku</button>
+        </section>
 
-            <section id="escolhaLutador" class="hidden">
-                <p>Escolha seu lutador:</p>
-                <button type="button" data-testid="btn-vegeta" id="btn-vegeta">1 - Vegeta</button>
-                <button type="button" data-testid="btn-goku" id="btn-goku">2 - Goku</button>
-            </section>
+        <section id="barrasDeVida" class="hp-container hidden">
+            <div class="barra-col">
+                <span>Vegeta HP</span>
+                <div class="hp-bar"><div class="hp" id="hpHeroi"></div></div>
+            </div>
 
-            <section id="barrasDeVida" class="hp-container hidden">
-                <div class="barra-col">
-                    <span>Vegeta HP</span>
-                    <div class="hp-bar">
-                        <div class="hp" id="hpHeroi"></div>
-                    </div>
+            <div class="barra-col direita">
+                <span>Goku HP</span>
+                <div class="hp-bar"><div class="hp" id="hpVilao"></div></div>
+            </div>
+        </section>
+
+        <section id="animacaoBatalha" class="hidden">
+            <div id="vencedorText" class="vencedor-text hidden"></div>
+            <div class="gif-col">
+                <div class="gif-placeholder" id="gifPlaceholder">⏳ Aguardando lutadores...</div>
+                <img id="gifLuta" class="gif-batalha" alt="" aria-label="Animação da luta em andamento">
+            </div>
+            <div id="fraseLutador" class="frase-lutador hidden"></div>
+            
+            <section id="tentarNovamente" class="hidden">
+                <p>Deseja tentar novamente?</p>
+                <div>
+                    <button type="button" data-testid="btn-sim" onclick="resetar()">Sim</button>
+                    <button type="button" data-testid="btn-nao" onclick="fim()">Não</button>
                 </div>
-
-                <div class="barra-col direita">
-                    <span>Goku HP</span>
-                    <div class="hp-bar">
-                        <div class="hp" id="hpVilao"></div>
-                    </div>
-                </div>
             </section>
+        </section>
 
-            <section id="animacaoBatalha" class="hidden">
-                <div id="vencedorText" class="vencedor-text hidden"></div>
-                <div class="gif-col">
-                    <div class="gif-placeholder" id="gifPlaceholder">⏳ Aguardando lutadores...</div>
-                    <img id="gifLuta" class="gif-batalha" alt="" aria-label="Animação da luta em andamento">
-                </div>
-                <div id="fraseLutador" class="frase-lutador hidden"></div>
-
-                <section id="tentarNovamente" class="hidden">
-                    <p>Deseja tentar novamente?</p>
-                    <div>
-                        <button type="button" data-testid="btn-sim" id="btn-sim">Sim</button>
-                        <button type="button" data-testid="btn-nao" id="btn-nao">Não</button>
-                    </div>
-                </section>
-            </section>
-
-            <!-- Logs da batalha -->
-            <section class="log-container hidden">
-                <div id="logHeroi" role="log" aria-label="Log de ações do Vegeta"></div>
-                <div id="logVilao" role="log" aria-label="Log de ações do Goku"></div>
-            </section>
+        <!-- Logs da batalha -->
+        <section class="log-container hidden">
+            <div id="logHeroi" role="log" aria-label="Log de ações do Vegeta"></div>
+            <div id="logVilao" role="log" aria-label="Log de ações do Goku"></div>
+        </section>
         </main>
-        <div style="height: 40px;"></div>
+
         <footer>
             <div class="footer-content">
                 <div id="mensagem">
@@ -99,11 +93,12 @@
                     </a>
                 </nav>
                 <div id="direitos">
-                    <p>&copy; Bruno Siqueira<br>Todos os direitos reservados.</p>
+                    <p>&copy; Bruno Gonçalves Siqueira - 2026<br>Todos os direitos reservados.</p>
                 </div>
             </div>
         </footer>
-    </div>
-</body>
+        </div>
 
+        <script src="js/script.js"></script>
+    </body>
 </html>

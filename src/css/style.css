@@ -1,16 +1,15 @@
-#iconesFooter a img {
-    width: 32px !important;
-    height: 32px !important;
-    opacity: 0.92;
-    transition: opacity 0.3s, transform 0.2s;
-    object-fit: contain;
+@keyframes animarGif {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
 }
 
-#direitos p, #mensagem p {
-    #mensagem p {
-        transition: all 0.3s ease;
-    }
-    /* ===================== RESET & UTILITÁRIOS ===================== */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
     }
     100% {
         opacity: 1;
@@ -25,6 +24,17 @@ html {
     height: 100%;
 }
 
+body {
+    background: #111;
+    color: #eaeaea;
+    font-family: monospace;
+    padding: 20px;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
 
 .page-container {
     display: flex;
@@ -34,6 +44,7 @@ html {
     max-width: 100%;
 }
 
+header {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -42,23 +53,22 @@ html {
     flex-shrink: 0;
 }
 
-
+main {
     flex: 1;
     display: flex;
     flex-direction: column;
 }
 
-
 header h1 {
     margin: 0;
-     gap: 10px !important;
+    text-align: center;
 }
 
+nav {
     width: 100%;
     display: flex;
     justify-content: center;
 }
-
 
 nav .btn {
     background-color: #0099ff;
@@ -359,21 +369,15 @@ button:focus {
     z-index: 2;
     background: transparent;
     padding: 0;
-        background: rgba(255, 136, 0, 0.1);
-        border: 2px solid #ff8800;
-        border-radius: 8px;
-        padding: 15px;
-        text-align: center;
-        transition: all 0.3s ease;
-        min-width: 160px;
-     background: rgba(26, 26, 26, 0.5) !important;
-        margin: 0 auto;
-        box-sizing: border-box;
+    margin: 0;
+}
+
+.gif-batalha.hidden {
+    display: none;
+    z-index: 0;
 }
 
 /* RESPONSIVO */
-        background: rgba(255, 136, 0, 0.2);
-        box-shadow: 0 0 15px rgba(255, 136, 0, 0.3);
 @media (max-width: 1024px) {
     #barrasDeVida {
         grid-template-columns: 1fr;
@@ -539,7 +543,7 @@ nav .btn:focus {
 
 main {
     flex: 1;
-    max-width: 1800px;
+    max-width: 900px;
     margin: 0 auto;
     padding: 40px;
     background: rgba(17, 17, 17, 0.8);
@@ -724,17 +728,6 @@ a:focus {
     padding: 15px;
     text-align: center;
     transition: all 0.3s ease;
-    min-width: 160px;
-    max-width: 260px;
-    margin: 0 auto;
-    box-sizing: border-box;
-}
-
-.mecanica-item {
-    min-width: 160px;
-    max-width: 260px;
-    margin: 0 auto;
-    box-sizing: border-box;
 }
 
 .tech-item:hover {
@@ -864,7 +857,7 @@ footer {
     border-top: 3px solid #0099ff;
     background: linear-gradient(to right, rgba(0, 153, 255, 0.08), rgba(0, 153, 255, 0.05) 30%, rgba(255, 136, 0, 0.05) 70%, rgba(255, 136, 0, 0.08));
     flex-shrink: 0;
-    max-width: 1800px;
+    max-width: 900px;
     margin: 0 auto;
 }
 
@@ -888,24 +881,10 @@ footer {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding-left: 32px;
-    padding-right: 32px;
+    padding: 0;
     background-color: transparent;
-    gap: 10px;
+    gap: 30px;
     border-radius: 0;
-    font-size: 1.15em;
-}
-
-#iconesFooter img {
-    width: 32px;
-    height: 32px;
-    margin: 0 6px;
-    vertical-align: middle;
-    transition: transform 0.2s;
-}
-#iconesFooter img:hover {
-    transform: scale(1.12);
-}
 }
 
 /* Mensagem - Container
@@ -952,9 +931,6 @@ footer {
 }
 
 /* Direitos - Container
-    #mensagem, #direitos {
-        text-align: center !important;
-    }
    Alinha à direita
    - text-align: right alinha texto à direita
 */
@@ -972,13 +948,13 @@ footer {
    - background: fundo com transparência
    - transition: anima mudanças
 */
+#iconesFooter a {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 40px;
     height: 40px;
     border-radius: 50%;
-#iconesFooter a img {
     border: 1.5px solid rgba(0, 153, 255, 0.4);
     background: rgba(0, 153, 255, 0.08);
     text-decoration: none;
@@ -1007,13 +983,13 @@ footer {
    - transition: anima opacidade
    - object-fit: contain mantém proporção
 */
+#iconesFooter a img {
     width: 22px;
     height: 22px;
     opacity: 0.85;
     transition: opacity 0.3s ease-out;
     object-fit: contain;
 }
-
 
 /* Ícones Footer - Imagem Hover State
    Aumenta opacidade ao passar mouse
@@ -1056,34 +1032,46 @@ footer {
    ======================================== */
 
 @media (max-width: 768px) {
-    /* Apenas ajustes realmente necessários para responsividade do footer */
-        padding: 25px 10px;
+    footer {
+        padding: 25px 15px;
+        margin-top: auto;
     }
 
     .footer-content {
-        flex-direction: column;
+        grid-template-columns: 1fr;
         gap: 12px;
         max-width: 100%;
-        padding-left: 0;
-        padding-right: 0;
     }
-    #mensagem, #direitos {
+
+    #mensagem {
         text-align: center;
     }
+
+    #direitos {
+        text-align: center;
+    }
+
+    #mensagem p {
+        font-size: 0.9em;
+    }
+
     #iconesFooter {
         gap: 8px;
     }
+
     #iconesFooter a {
         width: 38px;
         height: 38px;
     }
+
     #iconesFooter a img {
-        width: 24px !important;
-        height: 24px !important;
+        width: 20px;
+        height: 20px;
     }
-    #mensagem p, #direitos p {
-        font-size: 1em !important;
-        padding-top: 0;
+
+    #direitos p {
+        font-size: 0.75rem;
         border-top: none;
+        padding-top: 0;
     }
 }
