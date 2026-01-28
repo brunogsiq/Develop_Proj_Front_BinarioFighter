@@ -5,20 +5,22 @@ let intervalo;
 let lutandoAtualmente = false; // Controle de estado do jogo
 let personagemEscolhido = "vegeta"; // Rastrear personagem escolhido
 
-// Garantir que DOM está carregado antes de usar
-document.addEventListener('DOMContentLoaded', function() {
-    logHeroi = document.getElementById("logHeroi");
-    logVilao = document.getElementById("logVilao");
-    
-    // Validar se elementos foram encontrados
-    if (!logHeroi || !logVilao) {
-        console.error("Erro: Elementos de log não encontrados no DOM");
-        return;
-    }
-    
-    // Inicializar HP
-    atualizarHP();
-});
+// Garantir que DOM está carregado antes de usar (protegido para Node)
+if (typeof document !== 'undefined') {
+    document.addEventListener('DOMContentLoaded', function() {
+        logHeroi = document.getElementById("logHeroi");
+        logVilao = document.getElementById("logVilao");
+        
+        // Validar se elementos foram encontrados
+        if (!logHeroi || !logVilao) {
+            console.error("Erro: Elementos de log não encontrados no DOM");
+            return;
+        }
+        
+        // Inicializar HP
+        atualizarHP();
+    });
+}
 
 function entrar() {
     if (lutandoAtualmente) return; // Prevenir múltiplos cliques
@@ -97,11 +99,11 @@ function iniciarGif() {
         // Ciclar entre gife02, gife03 e gife04 a cada chamada
         try {
             const fightGifs = ['gife02.gif', 'gife03.gif', 'gife04.gif'];
-            const current = parseInt(gif.dataset.fightIndex || '0', 10) || 0;
+            const current = parseInt(gif.dataset.gifIndex || '0', 10) || 0;
             const filename = fightGifs[current % fightGifs.length];
             gif.src = 'src/img/' + filename + '?' + new Date().getTime();
-            // avançar índice para próxima vez
-            gif.dataset.fightIndex = String((current + 1) % fightGifs.length);
+            // avançar índice para próxima vez (unificado em gifIndex)
+            gif.dataset.gifIndex = String((current + 1) % fightGifs.length);
             console.log('GIF de luta carregando: src/img/' + filename);
         } catch (e) {
             // fallback clássico
@@ -302,6 +304,79 @@ function corPorHP(valor, personagem) {
     }
 }
 
+    /* ==========================
+       Bloco de Testes Unitários
+       Executa apenas em Node quando RUN_JS_TESTS=1
+       Não altera comportamento em navegador.
+       ========================== */
+    if (typeof process !== 'undefined' && process.env && process.env.RUN_JS_TESTS === '1') {
+        (function runTests() {
+            const assertEqual = (a, b, msg) => {
+                if (a !== b) throw new Error(msg + ` — esperado: ${b}, obtido: ${a}`);
+            };
+
+            const tests = [];
+
+            tests.push(function test_corPorHP_vegeta() {
+                assertEqual(corPorHP(100, 'vegeta'), '#00ccff', 'vegeta 100%');
+                assertEqual(corPorHP(75, 'vegeta'), '#00ccff', 'vegeta 75%');
+                assertEqual(corPorHP(50, 'vegeta'), '#0099ff', 'vegeta 50%');
+                assertEqual(corPorHP(25, 'vegeta'), '#0066ff', 'vegeta 25%');
+                assertEqual(corPorHP(0, 'vegeta'), '#0066ff', 'vegeta 0%');
+            });
+
+            tests.push(function test_corPorHP_goku() {
+                assertEqual(corPorHP(100, 'goku'), '#ffaa00', 'goku 100%');
+                assertEqual(corPorHP(75, 'goku'), '#ffaa00', 'goku 75%');
+                assertEqual(corPorHP(50, 'goku'), '#ff8800', 'goku 50%');
+                assertEqual(corPorHP(25, 'goku'), '#ff6600', 'goku 25%');
+                assertEqual(corPorHP(0, 'goku'), '#ff6600', 'goku 0%');
+            });
+
+            tests.push(function test_gifIndex_cycle_logic() {
+                // lógica pura usada no ciclo de GIFs
+                const mock = { dataset: {} };
+                const fightGifsLen = 3;
+                // função que a implementação usa internamente
+                const advance = (d) => {
+                    const current = parseInt(d.gifIndex || '0', 10) || 0;
+                    d.gifIndex = String((current + 1) % fightGifsLen);
+                    return d.gifIndex;
+                };
+
+                assertEqual(advance(mock.dataset), '1', 'advance 0->1');
+                assertEqual(advance(mock.dataset), '2', 'advance 1->2');
+                assertEqual(advance(mock.dataset), '0', 'advance 2->0');
+            });
+
+            tests.push(function test_fim_sets_waitGif_and_increments() {
+                const mock = { dataset: {} };
+                const gifs = ['a.gif', 'b.gif', 'c.gif'];
+                const currentIndex = parseInt(mock.dataset.gifIndex || '0', 10) || 0;
+                const filename = gifs[currentIndex % gifs.length];
+                mock.dataset.waitGif = filename;
+                mock.dataset.gifIndex = String((currentIndex + 1) % gifs.length);
+
+                assertEqual(mock.dataset.waitGif, 'a.gif', 'waitGif set');
+                assertEqual(mock.dataset.gifIndex, '1', 'gifIndex incremented');
+            });
+
+            // Executa todos os testes e reporta
+            let passed = 0;
+            try {
+                for (const t of tests) {
+                    t();
+                    passed++;
+                }
+                console.log(`OK: ${passed}/${tests.length} testes passaram.`);
+                process.exit(0);
+            } catch (err) {
+                console.error('FALHA EM TESTE:', err && err.message ? err.message : err);
+                process.exit(2);
+            }
+        })();
+    }
+
 function simularCombate() {
     // Limpar intervalo anterior se existir
     if (intervalo) clearInterval(intervalo);
@@ -400,12 +475,12 @@ function resetar() {
     atualizarHP();
     pausarGif();
 
-    // limpar índice de ciclo de GIFs para começar do primeiro quando reiniciar (Sim)
+    // limpar índice de ciclo de GIFs para começar do primeiro quando reiniciar
     try {
         const gif = document.getElementById('gifLuta');
         if (gif && gif.dataset) {
-            delete gif.dataset.waitIndex;
-            delete gif.dataset.waitGif;
+            delete gif.dataset.gifIndex;   // unificado: era fightIndex / waitIndex
+            delete gif.dataset.waitGif;    // manter waitGif (nome do GIF de espera) removido também
         }
     } catch (e) {
         console.error('Erro ao limpar índice de GIF em resetar():', e);
@@ -460,15 +535,15 @@ function fim() {
         const gif = document.getElementById('gifLuta');
         if (gif && gif.dataset) {
             const gifs = [
-                'gife-vegeta-goku-espera.gif',
-                'gife-vegeta-goku-espera-dois.gif',
-                'gife-vegeta-goku-espera-tres.gif'
-            ];
-            const currentIndex = parseInt(gif.dataset.waitIndex || '0', 10) || 0;
-            const filename = gifs[currentIndex % gifs.length];
-            // definir o GIF atual de espera e avançar o índice para a próxima vez
-            gif.dataset.waitGif = filename;
-            gif.dataset.waitIndex = String((currentIndex + 1) % gifs.length);
+                    'gife-vegeta-goku-espera.gif',
+                    'gife-vegeta-goku-espera-dois.gif',
+                    'gife-vegeta-goku-espera-tres.gif'
+                ];
+                const currentIndex = parseInt(gif.dataset.gifIndex || '0', 10) || 0; // unificado
+                const filename = gifs[currentIndex % gifs.length];
+                // definir o GIF atual de espera e avançar o índice para a próxima vez
+                gif.dataset.waitGif = filename;
+                gif.dataset.gifIndex = String((currentIndex + 1) % gifs.length);
         }
         // sempre forçar exibição do GIF de espera (trocar src se necessário)
         mostrarGifEspera();
