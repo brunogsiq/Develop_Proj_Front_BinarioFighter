@@ -18,7 +18,7 @@ function iniciarGif() {
     gif.style.display = "block";
     gif.src = "";
     setTimeout(() => {
-        gif.src = "img/gife.gif"; // atualize conforme o nome/caminho real
+        gif.src = "img/lutaOriginal.gif"; // atualize conforme o nome/caminho real
     }, 10);
 }
 

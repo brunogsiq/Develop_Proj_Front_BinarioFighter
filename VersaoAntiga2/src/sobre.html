@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sobre - Binário Fighter</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+      main {
+        max-width: 900px;
+        margin: auto;
+        padding: 20px;
+        background: #1c1124;
+        border-radius: 12px;
+        box-shadow: 0 0 10px #9e00ff55;
+      }
+
+      section {
+        margin-bottom: 40px;
+      }
+
+      h2 {
+        color: #ff00d4;
+        margin-bottom: 10px;
+        border-left: 5px solid #9e00ff;
+        padding-left: 10px;
+      }
+
+      ul,
+      ol {
+        padding-left: 20px;
+      }
+
+      li {
+        margin-bottom: 8px;
+      }
+
+      code {
+        background: #2a1a3d;
+        padding: 2px 6px;
+        border-radius: 5px;
+        color: #ffb3ff;
+      }
+
+      img {
+        width: 100%;
+        max-width: 400px;
+        border: 2px solid #9e00ff;
+        border-radius: 8px;
+        margin: 10px;
+      }
+
+      p,
+      li {
+        line-height: 1.6;
+        color: #ccc;
+      }
+
+      a {
+        color: #00ccff;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>🧾 Sobre o Projeto - Binário Fighter</h1>
+      <nav>
+        <a href="index.html" class="btn">← Voltar para o Jogo</a>
+      </nav>
+    </header>
+
+    <main>
+      <section>
+        <h2>🎮 Introdução</h2>
+        <p>
+          <strong>Binário Fighter</strong> é um jogo experimental escrito em
+          linguagem <code>C</code>, criado para simular combates automáticos
+          entre um herói e um vilão. O objetivo é mostrar lógica de programação
+          com elementos divertidos, lutas aleatórias e HPs variáveis.
+        </p>
+      </section>
+
+      <section>
+        <h2>🧠 Função <code>numeroAleatorio</code></h2>
+        <p>
+          Essa função é responsável por gerar os danos aleatórios dos ataques
+          durante as rodadas de combate. O ciclo continua até que o HP de um dos
+          personagens chegue a zero.
+        </p>
+        <ul>
+          <li><code>atq1</code>: Dano do vilão</li>
+          <li><code>atq2</code>: Dano do herói</li>
+          <li><code>hp1</code>: HP do vilão</li>
+          <li><code>hp2</code>: HP do herói</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>⚙️ Função <code>main</code></h2>
+        <p>
+          Aqui tudo começa. O jogador pode optar por entrar na luta ou fugir, e
+          escolher entre herói ou vilão. O sistema inicializa os valores de
+          força e vida com base em dados aleatórios.
+        </p>
+      </section>
+
+      <section>
+        <h2>🎨 Paleta de Cores</h2>
+        <p>
+          A aplicação utiliza o comando <code>system("color 47")</code> para
+          modificar as cores do console no Windows, usando a biblioteca
+          <code>conio.h</code>. No modo visual, adaptamos a identidade com tons
+          de roxo, rosa e ciano.
+        </p>
+      </section>
+
+      <section>
+        <h2>📖 Como Jogar</h2>
+        <ol>
+          <li>Execute o jogo no terminal (modo original em C)</li>
+          <li>
+            Escolha <strong>1</strong> para lutar ou <strong>2</strong> para
+            fugir
+          </li>
+          <li>
+            Defina seu personagem: <strong>1</strong> para herói ou
+            <strong>2</strong> para vilão
+          </li>
+          <li>Assista ao combate automático turno a turno</li>
+          <li>No fim, escolha se deseja tentar novamente</li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>🖼️ Galeria</h2>
+        <div style="display: flex; flex-wrap: wrap; justify-content: center">
+          <img src="./img/1.PNG" alt="Gameplay 1" />
+          <img src="./img/2.PNG" alt="Gameplay 2" />
+          <img src="./img/3.PNG" alt="Gameplay 3" />
+          <img src="./img/4.PNG" alt="Gameplay 4" />
+        </div>
+      </section>
+
+      <section>
+        <h2>📎 Créditos</h2>
+        <p>👨‍💻 Projeto criado por <strong>Bruno Gonçalves Siqueira</strong>.</p>
+        <p>
+          🔗 Veja o código-fonte completo no
+          <a
+            href="https://github.com/brunogsiq/Develop_Proj_Front_BinarioFighter"
+            target="_blank"
+            >GitHub</a
+          >.
+        </p>
+      </section>
+    </main>
+  </body>
+</html>

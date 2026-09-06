@@ -43,3 +43,5 @@ As imagens abaixo são placeholders gerados automaticamente. Substitua por captu
 - ![Index e Sobrel](src/img/screenshot-1.png)
 - ![Batalha](src/img/screenshot-2.png)
 - ![Tentar Novamente > Não](src/img/screenshot-3.png)
+
+Mensagem teste - Deverá ser apagada após documentação completa
